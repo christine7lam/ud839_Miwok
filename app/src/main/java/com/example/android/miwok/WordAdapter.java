@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static android.view.View.GONE;
+
 /**
  * Created by hl913h on 10/9/17.
  */
@@ -45,6 +47,15 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // Get the version number from the current AndroidFlavor object and
         // set this text on the number TextView
         defaultTextView.setText(currentWord.getDefaultTranslation());
+
+        // Find the ImageView in the list
+        ImageView iconView = (ImageView) listItemView.findViewById(R.id.list_item_icon);
+        if (currentWord.hasImage()) {
+            iconView.setImageResource(currentWord.getImageResourceId());
+        } else {
+            // Otherwise, hide the imageView
+            iconView.setVisibility(GONE);
+        }
 
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView
