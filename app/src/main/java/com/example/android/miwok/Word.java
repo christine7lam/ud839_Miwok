@@ -141,4 +141,16 @@ public class Word {
     public int getmAudioRes() {
         return mAudioRes;
     }
+
+    @Override
+    public String toString() {
+        return "Word{" +
+                "mDefaultTranslation='" + mDefaultTranslation + '\'' +
+                ", mMiwokTranslation='" + mMiwokTranslation + '\'' +
+                ", mImgRes=" + mImgRes +
+                ", mAudioRes=" + mAudioRes +
+                ", isPlaying=" + isPlaying +
+                ", mMediaPlayer=" + mMediaPlayer +
+                '}';
+    }
 }
