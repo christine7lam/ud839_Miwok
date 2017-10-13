@@ -1,12 +1,15 @@
 package com.example.android.miwok;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,8 +23,11 @@ import static android.view.View.GONE;
 
 public class WordAdapter extends ArrayAdapter<Word> {
 
-    public WordAdapter(Activity context, ArrayList<Word> words) {
+    private int mColorResId;
+
+    public WordAdapter(Activity context, ArrayList<Word> words, int colorResId) {
         super(context, 0, words);
+        mColorResId = colorResId;
     }
 
     @NonNull
@@ -57,6 +63,10 @@ public class WordAdapter extends ArrayAdapter<Word> {
             iconView.setVisibility(GONE);
         }
 
+        View textContainer = listItemView.findViewById(R.id.text_container);
+        int color = ContextCompat.getColor(getContext(), mColorResId);
+        textContainer.setBackgroundColor(color);
+        
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView
         return listItemView;

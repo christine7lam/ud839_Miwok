@@ -1,5 +1,6 @@
 package com.example.android.miwok;
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.view.View;
 
 /**
@@ -13,10 +14,18 @@ public class Word {
     // String Miwok translation
     private String mMiwokTranslation;
 
-    // String image path
+    // image path
     private int mImgRes = NO_IMAGE_PROVIDED;
 
     private static final int NO_IMAGE_PROVIDED = -1;
+
+    // audio path
+    private int mAudioRes;
+
+    private boolean isPlaying = false;
+
+    // Media Player
+    private MediaPlayer mMediaPlayer;
 
     /**
      * Constructs a new Word with default translation and miwok translation.
@@ -27,12 +36,26 @@ public class Word {
     }
 
     /**
-     * Constructs a new Word with default translation, miwok translation, and image resources
+     * Constructs a new Word with default translation, miwok translation, and audio resources
      */
-    public Word(String defaultTranslation, String miwokTranslation, int imgRes) {
+    public Word(String defaultTranslation, String miwokTranslation, int audioRes) {
+        mDefaultTranslation = defaultTranslation;
+        mMiwokTranslation = miwokTranslation;
+        mAudioRes = audioRes;
+    }
+
+    /**
+     * Constructs a new Word with default translation, miwok translation, image resources, and audio resources
+     * @param defaultTranslation
+     * @param miwokTranslation
+     * @param imgRes
+     * @param audioRes
+     */
+    public Word(String defaultTranslation, String miwokTranslation, int imgRes, int audioRes) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mImgRes = imgRes;
+        mAudioRes = audioRes;
     }
 
     /**
@@ -87,7 +110,35 @@ public class Word {
         return mImgRes;
     }
 
+    /**
+     * Detects if it has the image associate with it
+     * @return
+     */
     public boolean hasImage() {
         return mImgRes != NO_IMAGE_PROVIDED;
+    }
+
+    /**
+     * Updates play state depending on user's onclick
+     * @return
+     */
+    public boolean isPlaying() {
+        return !isPlaying;
+    }
+
+    /**
+     * Sets the audio resource ID
+     * @param audioRes
+     */
+    public void setAudioResId(int audioRes) {
+        mAudioRes = audioRes;
+    }
+
+    /**
+     * Gets the audio resources ID
+     * @return
+     */
+    public int getmAudioRes() {
+        return mAudioRes;
     }
 }
